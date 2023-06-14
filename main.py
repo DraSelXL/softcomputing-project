@@ -16,8 +16,6 @@ for rowIndex in range(len(x)):
     for cellIndex in range(len(row)):
         cellString = row[cellIndex]
 
-        print(cellString)
-
         if cellString == 'x':
             x[rowIndex, cellIndex] = 0.0
 
@@ -37,9 +35,6 @@ for rowIndex in range(len(y)):
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
 
-print("X train")
-
-print("Y train")
 
 dataset_shape = [np.shape(x_train)[1]]
 print(dataset_shape)
