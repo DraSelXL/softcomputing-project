@@ -28,20 +28,20 @@ for rowIndex in range(len(x)):
 
 for rowIndex in range(len(y)):
     if y[rowIndex] == 'positive':
-        y[rowIndex] = 0.0
+        y[rowIndex] = 1.0
 
     if y[rowIndex] == 'negative':
-        y[rowIndex] = -1.0
+        y[rowIndex] = 0.0
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=21)
 
 
 dataset_shape = [np.shape(x_train)[1]]
 print(dataset_shape)
 
 model = tf.keras.Sequential([
-    tf.keras.layers.Dense(units=64, activation='relu', input_shape=dataset_shape),
-    tf.keras.layers.Dense(units=64, activation='relu'),
+    tf.keras.layers.Dense(units=128, activation='relu', input_shape=dataset_shape),
+    tf.keras.layers.Dense(units=128, activation='relu'),
     tf.keras.layers.Dense(units=1)
 ])
 
@@ -60,7 +60,8 @@ losses = model.fit(
     epochs=256
 )
 
-print(model.predict(np.asarray(x_test).astype('float32')[:9, :]))
-print(np.asarray(y_test).astype('float32')[:9])
-
-print(losses)
+print("Hasil NN:")
+print(model.predict(np.asarray(x_test).astype('float32')[10:20, :]))
+print("")
+print("Jawaban yang benar:")
+print(np.asarray(y_test).astype('float32')[10:20])
